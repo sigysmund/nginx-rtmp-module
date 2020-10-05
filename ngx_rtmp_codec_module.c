@@ -16,6 +16,7 @@
 #define NGX_RTMP_CODEC_META_ON      1
 #define NGX_RTMP_CODEC_META_COPY    2
 
+#define VAR_UNUSED      __attribute__((unused))
 
 static void * ngx_rtmp_codec_create_app_conf(ngx_conf_t *cf);
 static char * ngx_rtmp_codec_merge_app_conf(ngx_conf_t *cf,
@@ -553,7 +554,7 @@ ngx_rtmp_codec_parse_avc_header(ngx_rtmp_session_t *s, ngx_chain_t *in)
 static void
 ngx_rtmp_codec_parse_hevc_header(ngx_rtmp_session_t *s, ngx_chain_t *in)
 {
-    ngx_uint_t              i, j, narrs, __attribute__((unused)) nal_type, nnal, nnall;
+    ngx_uint_t              i, j, narrs, nal_type VAR_UNUSED, nnal, nnall;
     ngx_rtmp_codec_ctx_t   *ctx;
     ngx_rtmp_bit_reader_t   br;
 
@@ -625,7 +626,6 @@ ngx_rtmp_codec_parse_hevc_header(ngx_rtmp_session_t *s, ngx_chain_t *in)
             //vps-32 sps-33 pps-34
         }
     }
-
 
     /* todo ctx->avc_ref_frames =  and so on*/
     ngx_log_debug8(NGX_LOG_DEBUG_RTMP, s->connection->log, 0,
